@@ -19,17 +19,44 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set up Docker
-      uses: docker-practice/actions-setup-docker@master
+    #- name: Set up Docker
+    #  uses: docker-practice/actions-setup-docker@master
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install -r requirements.txt
-    - name: Build with Docker
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        
+        sudo apt update
+        sudo apt install -qq --yes --no-install-recommends \
+          autoconf \
+          automake \
+          build-essential \
+          ccache \
+          cmake \
+          gettext \
+          git \
+          libffi-dev \
+          libltdl-dev \
+          libssl-dev \
+          libtool \
+          openjdk-13-jdk \
+          patch \
+          pkg-config \
+          python3-pip \
+          python3-setuptools \
+          sudo \
+          unzip \
+          zip \
+          zlib1g-dev
+          
+        
+        
+    - name: Build
       run: |
-        echo $PWD
-        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer --version
-        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer android debug
+        pip install --upgrade Cython==0.29.19 wheel pip virtualenv buildozer
+        buildozer android debug
+        
+        
         
     - uses: actions/upload-artifact@v2
       with:
