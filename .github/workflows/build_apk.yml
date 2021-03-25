@@ -1,0 +1,37 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Build Android App APK
+
+on: [workflow_dispatch]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Set up Docker
+      uses: docker-practice/actions-setup-docker@master
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Build with Docker
+      run: |
+        docker version
+        docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer --version
+        docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer android debug
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: android-apk
+        path: bin/*.apk
