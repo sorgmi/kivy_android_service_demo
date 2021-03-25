@@ -28,6 +28,7 @@ jobs:
     - name: Build with Docker
       run: |
         mkdir .buildozer
+        mkdir bin
         docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer --version
         docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer android debug
         
