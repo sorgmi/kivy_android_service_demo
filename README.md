@@ -2,6 +2,10 @@
 
 Demo App which shows how to use push notifications and android services in your KivyMD App.
 
+Features:
+1. cross-platform application (Windows, Linux, Mac, Android, iOS) using [KivyMD](https://github.com/kivymd/KivyMD)
+2. push notifications using [plyer](https://github.com/kivy/plyer)
+3. Android background services using [pyjnius](https://github.com/kivy/pyjnius)
 
 Screenshot 1            |  Screenshot 2
 :-------------------------:|:-------------------------:
