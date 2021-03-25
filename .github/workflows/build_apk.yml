@@ -27,7 +27,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build with Docker
       run: |
-        docker version
+        mkdir .buildozer
         docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer --version
         docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer android debug
         
