@@ -27,8 +27,9 @@ jobs:
         pip install -r requirements.txt
     - name: Build with Docker
       run: |
-        sudo docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer --version
-        sudo docker run --volume "$PWD":/home/user/hostcwd kivy/buildozer android debug
+        echo $PWD
+        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer --version
+        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer android debug
         
     - uses: actions/upload-artifact@v2
       with:
