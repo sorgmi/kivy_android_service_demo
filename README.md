@@ -57,3 +57,10 @@ pip install buildozer
 
 buildozer android debug
 ```
+
+# Build Desktop Binary (Windows, Linux, Mac)
+```
+pip install pyinstaller kivymd plyer
+pyinstaller main.spec
+```
+On Windows binary can be found now at dist/main.exe
