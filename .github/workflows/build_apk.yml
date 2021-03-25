@@ -19,8 +19,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set up Docker
-      uses: docker-practice/actions-setup-docker@master
+    #- name: Set up Docker
+    #  uses: docker-practice/actions-setup-docker@master
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -28,10 +28,10 @@ jobs:
     - name: Build with Docker
       run: |
         echo $PWD
-        sudo usermod -aG docker $USER
-        sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-        sudo chmod g+rwx "$HOME/.docker" -R
-        docker run hello-world
+        #sudo usermod -aG docker $USER
+        #sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+        #sudo chmod g+rwx "$HOME/.docker" -R
+        #docker run hello-world
         
         docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer --version
         docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer android debug
