@@ -49,7 +49,7 @@ jobs:
           zip \
           zlib1g-dev
           
-        pip3 install --user --upgrade Cython==0.29.19 wheel pip virtualenv
+        pip3 install --user --upgrade Cython==0.29.19 wheel pip virtualenv buildozer
         
     - name: Build
       run: |
