@@ -1,3 +1,0 @@
-kivy
-kivymd
-plyer
