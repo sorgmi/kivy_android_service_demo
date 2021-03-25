@@ -8,7 +8,7 @@ on: [workflow_dispatch]
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: kivy/buildozer
     strategy:
       matrix:
         python-version: [3.8]
@@ -19,18 +19,13 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Set up Docker
-      uses: docker-practice/actions-setup-docker@master
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Build with Docker
+
+    - name: Build App
       run: |
         echo $PWD
-        sudo usermod -aG docker $USER
-        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer --version
-        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer android debug
+        #python -m pip install --upgrade pip
+        #if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        buildozer android debug
         
     - uses: actions/upload-artifact@v2
       with:
