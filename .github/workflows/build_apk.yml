@@ -28,7 +28,6 @@ jobs:
     - name: Build with Docker
       run: |
         echo $PWD
-        sudo groupadd docker
         sudo usermod -aG docker $USER
         sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer --version
         sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer android debug
