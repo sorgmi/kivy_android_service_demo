@@ -53,7 +53,7 @@ jobs:
         
     - name: Build
       run: |
-        pip install --user --upgrade Cython==0.29.19 wheel pip virtualenv buildozer
+        pip install --upgrade Cython==0.29.19 wheel pip virtualenv buildozer
         buildozer android debug
         
         
