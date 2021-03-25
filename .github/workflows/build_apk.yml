@@ -28,13 +28,13 @@ jobs:
     - name: Build with Docker
       run: |
         echo $PWD
-        #sudo usermod -aG docker $USER
-        #sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
-        #sudo chmod g+rwx "$HOME/.docker" -R
+        sudo usermod -aG docker $USER
+        sudo chown "$USER":"$USER" /home/"$USER"/.docker -R
+        sudo chmod g+rwx "$HOME/.docker" -R
         #docker run hello-world
         
-        docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer --version
-        docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer android debug
+        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer --version
+        sudo docker run --volume $(pwd):/home/user/hostcwd kivy/buildozer android debug
         
     - uses: actions/upload-artifact@v2
       with:
