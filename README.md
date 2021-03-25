@@ -13,13 +13,13 @@ Screenshot 1            |  Screenshot 2
 
 
 
-# run desktop version
+# Run desktop version
 ```
 pip install kivymd plyer
 python main.py
 ```
 
-# build android app (with docker)
+# Build android app
 **Option 1 using Docker (recommended):**
 ```
 docker run --volume "$HOME/.buildozer":/home/user/.buildozer --volume "$PWD":/home/user/hostcwd kivy/buildozer android debug
