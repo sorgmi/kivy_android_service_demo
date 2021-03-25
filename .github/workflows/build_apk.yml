@@ -19,13 +19,8 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-    #- name: Set up Docker
-    #  uses: docker-practice/actions-setup-docker@master
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        
+      run: |               
         sudo apt update
         sudo apt install -qq --yes --no-install-recommends \
           autoconf \
@@ -49,15 +44,14 @@ jobs:
           zip \
           zlib1g-dev
           
-        
+        python -m pip install --upgrade pip
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        pip install --upgrade Cython==0.29.19 wheel pip virtualenv buildozer     
         
     - name: Build
       run: |
-        pip install --upgrade Cython==0.29.19 wheel pip virtualenv buildozer
         buildozer android debug
-        
-        
-        
+         
     - uses: actions/upload-artifact@v2
       with:
         name: android-apk
